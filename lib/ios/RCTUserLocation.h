@@ -1,4 +1,4 @@
-#import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import <BaiduMapAPI_Base/BMKUserLocation.h>
 
 @interface RCTUserLocation : BMKUserLocation
 
