@@ -9,10 +9,10 @@
     "baidumap"
   ],
   "version": "0.7.0",
-  "author": "7c00 <i@7c00.cc>",
+  "author": "Masazumi9527",
   "repository": {
     "type": "git",
-    "url": "https://github.com/qiuxiang/react-native-baidumap-sdk"
+    "url": "https://github.com/masazumi9527/react-native-baidumap-sdk-main"
   },
   "license": "MIT",
   "files": [

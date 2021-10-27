@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.name         = package['name']
   s.version      = package['version']
   s.summary      = package['description']
-  s.authors      = { "7c00" => "i@7c00.cc" }
+  s.authors      = { "Masazumi9527" => "Masazumi9527@gmail.com" }
   s.homepage     = package['repository']['url']
   s.license      = package['license']
   s.platform     = :ios, "8.0"
