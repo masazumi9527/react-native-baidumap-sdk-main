@@ -1,6 +1,6 @@
 {
-  "name": "react-native-baidumap-sdk",
-  "description": "React Native BaiduMap SDK for Android + iOS",
+  "name": "react-native-baidumap-ios-sdk",
+  "description": "React Native BaiduMap SDK for iOS",
   "keywords": [
     "react-native",
     "maps",
@@ -8,7 +8,7 @@
     "location",
     "baidumap"
   ],
-  "version": "0.7.0",
+  "version": "0.0.2",
   "author": "Masazumi9527",
   "repository": {
     "type": "git",
@@ -16,14 +16,14 @@
   },
   "license": "MIT",
   "files": [
-    "lib/js",
+    "src",
     "lib/ios",
     "lib/android/src",
     "lib/android/build.gradle",
     "react-native.config.js"
   ],
-  "main": "lib/js",
-  "types": "lib/js/index.d.ts",
+  "main": "src",
+  "types": "src/index.d.ts",
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc",
