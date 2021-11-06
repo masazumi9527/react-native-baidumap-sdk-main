@@ -15,11 +15,13 @@
 
 - (instancetype)init {
     self = [super init];
-    _image = [UIImage imageNamed:@"marker" inBundle:RCTMarker.bundle compatibleWithTraitCollection:nil];
-    _annotationView = [[BMKAnnotationView alloc] initWithAnnotation:self reuseIdentifier:nil];
-    [self setColor:[RCTConvert UIColor:@(0xfff5533d)]];
-    [_annotationView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_onPress:)]];
-    _calloutPressHandler = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_onCalloutPress:)];
+    if (self) {
+        _image = [UIImage imageNamed:@"marker" inBundle:RCTMarker.bundle compatibleWithTraitCollection:nil];
+        _annotationView = [[BMKAnnotationView alloc] initWithAnnotation:self reuseIdentifier:nil];
+        [self setColor:[RCTConvert UIColor:@(0xfff5533d)]];
+        [_annotationView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_onPress:)]];
+        _calloutPressHandler = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_onCalloutPress:)];
+    }
     return self;
 }
 
