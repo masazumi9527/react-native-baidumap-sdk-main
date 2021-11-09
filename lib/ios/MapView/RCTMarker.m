@@ -29,12 +29,12 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey, id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"community"]) {
-        if (_communityLabel != nil) {
-            _communityLabel.text = _community;
+        if (_annotationView != nil) {
+            _annotationView.community = _community;
         }
     } else if ([keyPath isEqualToString:@"houseCount"]) {
-        if (_houseCountLabel != nil) {
-            _houseCountLabel.text = _houseCount;
+        if (_annotationView != nil) {
+            _annotationView.houseCount = _houseCount;
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
