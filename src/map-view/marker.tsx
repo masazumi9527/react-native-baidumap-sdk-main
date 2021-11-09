@@ -1,5 +1,5 @@
 import * as React from "react";
-import { bool, string } from "prop-types";
+import { bool, string, number } from "prop-types";
 import {
   ColorPropType,
   Platform,
@@ -31,6 +31,8 @@ type Props = {
   title?: string;
   selected?: boolean;
   draggable?: boolean;
+  community?: string;
+  houseCount?: number;
   flat?: boolean;
   centerOffset?: Point;
   onPress?: () => void;
@@ -58,6 +60,8 @@ export default class Marker extends Component<Props> {
     title: string,
     selected: bool,
     draggable: bool,
+    community: string,
+    houseCount: number,
     flat: bool,
     centerOffset: PointPropType
   };

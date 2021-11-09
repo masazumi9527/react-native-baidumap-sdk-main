@@ -1,6 +1,9 @@
 #import "RCTCustomMarker.h"
 
-@implementation RCTCustomMarker
+@implementation RCTCustomMarker {
+    UILabel *_communityLabel;
+    UILabel *_houseCountLabel;
+}
 
 /**
     初始化并返回一个annotationView
@@ -12,15 +15,54 @@
 - (id)initWithAnnotation:(id<BMKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.frame = CGRectMake(0, 0, 32, 32);
-        UIImageView *annotationImage = [[UIImageView alloc] initWithFrame:self.frame];
-        annotationImage.animationImages = @[[UIImage imageNamed:@"greenAnimationIcon"], [UIImage imageNamed:@"blackAnimationIcon"], [UIImage imageNamed:@"redAnimationIcon"]];
-        annotationImage.animationDuration = 0.5 * 3;
-        annotationImage.animationRepeatCount = 0;
-        [annotationImage startAnimating];
-        [self addSubview:annotationImage];
+        _community = @"";
+        _houseCount = 0;
+
+        self.frame = CGRectMake(0, 0, 60, 60);
+        UIView *view = [[UIView alloc] initWithFrame:self.frame];
+        view.backgroundColor = [UIColor colorWithRed:39/255.0 green:175/255.0 blue:167/255.0 aIpha:1];
+        view.layer.cornerRadius = view.frame.size.width / 2;
+        view.clipsToBounds = YES;
+
+        _communityLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 60, 30)];
+        _communityLabel.text = _community;
+        _communityLabel.textColor = [UIColor whiteColor]; 
+        _communityLabel.textAlignment = NSTextAlignmentCenter;
+        _communityLabel.font = [UIFont systemFontOfSize:12];
+
+        _houseCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 25, 60, 30)];
+        _houseCountLabel.text = _houseCount;
+        _houseCountLabel.textColor = [UIColor whiteColor]; 
+        _houseCountLabel.textAlignment = NSTextAlignmentCenter;
+        _houseCountLabel.font = [UIFont systemFontOfSize:12];
+
+        [self addObserver:self forKeyPath:@"community" options:NSKeyValueObservingOptionNew context:nil];
+        [self addObserver:self forKeyPath:@"houseCount" options:NSKeyValueObservingOptionNew context:nil];
+    
+        [view addSubview:_communityLabel];
+        [view addSubview:_houseCountLabel];
+        [self addSubview:view];
     }
     return self;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey, id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"community"]) {
+        if (_communityLabel != nil) {
+            _communityLabel.text = _community;
+        }
+    } else if ([keyPath isEqualToString:@"houseCount"]) {
+        if (_houseCountLabel != nil) {
+            _houseCountLabel.text = _houseCount;
+        }
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+- (void)dealloc {
+    [self removeObserver:self forKeyPath:@"community"];
+    [self removeObserver:self forKeyPath:@"houseCount"];
 }
 
 @end

@@ -1,5 +1,6 @@
 #import <BaiduMapAPI_Map/BMKAnnotationView.h>
 #import "RCTMapView.h"
+#import "RCTCustomMarker.h"
 
 @interface RCTMarker : BMKAnnotationView <BMKAnnotation>
 
@@ -13,9 +14,12 @@
 @property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 
+@property (nonatomic, copy) NSString *community;
+@property (nonatomic, copy) NSNumber *houseCount;
+
 @property (nonatomic, weak) RCTMapView *mapView;
 
-- (BMKAnnotationView *)annotationView;
+- (RCTCustomMarker *)annotationView;
 - (void)bindCalloutPressHandler;
 - (void)setSelected:(BOOL)selected;
 

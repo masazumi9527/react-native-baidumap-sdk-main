@@ -4,7 +4,7 @@
 #import "RCTCallout.h"
 
 @implementation RCTMarker {
-    BMKAnnotationView *_annotationView;
+    RCTCustomMarker *_annotationView;
     BMKActionPaopaoView *_calloutView;
     UITapGestureRecognizer *_calloutPressHandler;
     BOOL _selected;
@@ -17,12 +17,33 @@
     self = [super init];
     if (self) {
         _image = [UIImage imageNamed:@"marker" inBundle:RCTMarker.bundle compatibleWithTraitCollection:nil];
-        _annotationView = [[BMKAnnotationView alloc] initWithAnnotation:self reuseIdentifier:nil];
+        _annotationView = [[RCTCustomMarker alloc] initWithAnnotation:self reuseIdentifier:nil];
         [self setColor:[RCTConvert UIColor:@(0xfff5533d)]];
         [_annotationView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_onPress:)]];
         _calloutPressHandler = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_onCalloutPress:)];
+        [self addObserver:self forKeyPath:@"community" options:NSKeyValueObservingOptionNew context:nil];
+        [self addObserver:self forKeyPath:@"houseCount" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey, id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"community"]) {
+        if (_communityLabel != nil) {
+            _communityLabel.text = _community;
+        }
+    } else if ([keyPath isEqualToString:@"houseCount"]) {
+        if (_houseCountLabel != nil) {
+            _houseCountLabel.text = _houseCount;
+        }
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+- (void)dealloc {
+    [self removeObserver:self forKeyPath:@"community"];
+    [self removeObserver:self forKeyPath:@"houseCount"];
 }
 
 - (void)bindCalloutPressHandler {
