@@ -2,7 +2,7 @@
 
 @interface RCTCustomMarker: BMKAnnotationView
 
-@property (nonatomic, copy) NSString *community;
-@property (nonatomic, copy) NSNumber *houseCount;
+@property (nonatomic, copy) UILabel *communityLabel;
+@property (nonatomic, copy) UILabel *houseCountLabel;
 
 @end

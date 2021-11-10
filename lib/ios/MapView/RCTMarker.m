@@ -30,11 +30,11 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey, id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"community"]) {
         if (_annotationView != nil) {
-            _annotationView.community = _community;
+            _annotationView.communityLabel.text = _community;
         }
     } else if ([keyPath isEqualToString:@"houseCount"]) {
         if (_annotationView != nil) {
-            _annotationView.houseCount = _houseCount;
+            _annotationView.houseCountLabel.text = _houseCount.stringValue;
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
